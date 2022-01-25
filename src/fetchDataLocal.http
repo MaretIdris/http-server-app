@@ -1,0 +1,6 @@
+GET http://localhost:8082/api/currencydata.json&base=USD
+Accept: application/json
+
+###
+GET http://localhost:8082/api/item?id=99
+Accept: application/json
