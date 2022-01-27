@@ -1,15 +1,5 @@
 # Simple HTTP server
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [What is this?](#what-is-this)
-- [npm scripts](#npm-scripts)
-- [IDEA Run Configurations](#idea-run-configurations)
-- [How to update the template](#how-to-update-the-template)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## Endpoints
 
 - I have created endpoints that return mock currency data for USD, EUR, GBP.
