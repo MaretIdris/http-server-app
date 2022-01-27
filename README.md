@@ -27,5 +27,5 @@ which has all the endpoints and you can just run all the endpoints from
 there as well.
 
 ## Tests
-Ignore the main.test.ts file. I am just practicing how to break down URL 
+Ignore the `main.test.ts` file. I am just practicing how to break down URL 
 using tests.
