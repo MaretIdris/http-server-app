@@ -39,9 +39,9 @@ const mockGBPData: BaseGBP = {
 
 function handleIncomingHTTPRequest(request: IncomingMessage, response: ServerResponse) {
   // All the endpoints:
-  // http://localhost:8082/USD
-  // http://localhost:8082/EUR
-  // http://localhost:8082/GBP
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/USD
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/EUR
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/GBP
 
   const url = request.url
 

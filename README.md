@@ -1,4 +1,4 @@
-# ts-node-dev-template
+# Simple HTTP server
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -10,43 +10,32 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## What is this?
+## Endpoints
 
-This is a template project that makes it easy to work w/ Node.js w/ TypeScript and Jest projects.
-Make sure to run `npm install` before running the scripts or the IDEA Run Configurations shown
-below.
+- I have created endpoints that return mock currency data for USD, EUR, GBP.
+- I am hosting this server on [Linode](https://www.linode.com/)
+- [Linode has great documentation](https://www.linode.com/docs/).
 
-## npm scripts
+If the Node server application is running in Linode, all the endpoints you can 
+fetch 
+data from:
+- http://45-79-65-143.ip.linodeusercontent.com:8082/USD
+- http://45-79-65-143.ip.linodeusercontent.com:8082/EUR
+- http://45-79-65-143.ip.linodeusercontent.com:8082/GBP
 
-You can run the following npm scripts:
 
-1. `npm run start` - This runs `main.ts`
-2. `npm run test` - This runs all the Jest tests.
+## Run server locally
+1. `npm start` to run server locally 
 
-> ✨ Note there is no `build` script, because this project uses [`tsm`][2021-12-01.tsm] in order to
-> quickly compile and run TypeScript files using Node.js.
+When running server locally, use localhost endpoints:
+- http://localhost:8082/USD
+- http://localhost:8082/EUR
+- http://localhost:8082/GBP
 
-[2021-12-01.tsm]: https://www.npmjs.com/package/tsm
+Note: There is a file in the `/src` folder called `fetchDataLocal.http` 
+which has all the endpoints and you can just run all the endpoints from 
+there as well.
 
-## IDEA Run Configurations
-
-You can also use IDEA Run Configurations that are included.
-
-1. `Run all tests` - This runs all the tests in Jest (using `ts-jest`).
-2. `main.ts` - This uses Node.js w/ `tsm` to run the `src/main.ts` file.
-3. The following npm scripts are provided.
-   1. Run the tests (`test`).
-   2. Watch all the tests running (`test-watch`).
-   3. Run the `main.ts` file (`start`).
-   4. Run the linter (`lint`).
-
-## How to update the template
-
-You can get more info on this topic [here](https://stackoverflow.com/a/56577320/2085356). Here are
-the steps to create a remote called `template` that we will pull the changes from and then merge
-those changes into `main`.
-
-```shell
-git remote add template https://github.com/nazmulidris/ts-node-dev-template
-git pull template main
-```
+## Tests
+Ignore the main.test.ts file. I am just practicing how to break down URL 
+using tests.
