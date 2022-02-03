@@ -1,67 +1,33 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http';
+import { mockCADData, mockEURData, mockGBPData, mockUSDData } from "./data";
+import { respondWithCurrency } from "./router";
 
 const PORT = 8082;
-
-type Currency = "USD" | "EUR" | "GBP"
-
-interface BaseUSD {
-  USD: Partial<{[P in Currency]: number}>
-}
-
-interface BaseEUR {
-  EUR: Partial<Record<Currency, number>>
-}
-
-interface BaseGBP {
-  GBP: Partial<Record<Currency, number>>
-}
-
-const mockUSDData: BaseUSD = {
-  USD: {
-    EUR: 0.88,
-    GBP: 0.74
-  }
-}
-
-const mockEURData: BaseEUR = {
-  EUR: {
-    USD: 1.13,
-    GBP: 0.84
-  }
-}
-
-const mockGBPData: BaseGBP = {
-  GBP: {
-    USD: 1.35,
-    EUR: 1.20
-  }
-}
 
 function handleIncomingHTTPRequest(request: IncomingMessage, response: ServerResponse) {
   // All the endpoints:
   // http://45-79-65-143.ip.linodeusercontent.com:8082/USD
   // http://45-79-65-143.ip.linodeusercontent.com:8082/EUR
   // http://45-79-65-143.ip.linodeusercontent.com:8082/GBP
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/CAD
 
   const url = request.url
 
-  const respondWithCurrency = (mockData: BaseUSD | BaseEUR | BaseGBP) => {
-    response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify(mockData))
-    response.end()
-  }
-
   switch (url) {
     case "/USD": {
-      respondWithCurrency(mockUSDData)
+      respondWithCurrency(mockUSDData, response)
       break
     }
     case "/EUR": {
-      respondWithCurrency(mockEURData)
+      respondWithCurrency(mockEURData, response)
       break
     }
     case "/GBP": {
-      respondWithCurrency(mockGBPData)
+      respondWithCurrency(mockGBPData, response)
+      break
+    }
+    case "/CAD": {
+      respondWithCurrency(mockCADData, response)
       break
     }
     default: {
@@ -78,3 +44,5 @@ function handleIncomingHTTPRequest(request: IncomingMessage, response: ServerRes
 const mockAPIServer = createServer(handleIncomingHTTPRequest);
 
 mockAPIServer.listen(process.env.PORT || PORT);
+
+console.log(`HTTP server is running on port ${PORT}`)

@@ -1,4 +1,18 @@
+import { mockUSDData } from "../data";
+import { respondWithCurrency, Testing } from "../router";
+
 const url = new URL("https://neilmadden.blog:8080/2021/10/27/multiple-input-macs?key1=value1&key2=value2#:~:text=Other%20approaches%20to%20multi%2Dinput%20MACs")
+
+
+test("requesting USD works", () => {
+  const currencyRequested = "USD"
+  const testing: Testing = {
+    result: ""
+  }
+  respondWithCurrency(mockUSDData, undefined, testing)
+  expect(testing.result).not.toBe("")
+  expect(testing.result).toBe("{\"USD\":{\"EUR\":0.88,\"GBP\":0.74,\"CAD\":1.27}}")
+})
 
 test("url hostname works", () => {
   const string = "http://localhost:8080/api"
@@ -37,7 +51,7 @@ test("url search works", () => {
 test("url searchParams work", () => {
   const keys = []
   const values = []
-  for(const [key, value] of url.searchParams.entries()) {
+  for (const [key, value] of url.searchParams.entries()) {
     keys.push(key)
     values.push(value)
   }
