@@ -1,40 +1,45 @@
-/*
- * Copyright 2022 Nazmul Idris All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import { BaseCurrency } from "./data";
-import { ServerResponse } from "http";
-
-export interface Testing {
-  result?: string
-}
+import { IncomingMessage, ServerResponse } from 'http';
+import { BaseCurrency, mockCADData, mockEURData, mockGBPData, mockUSDData } from "./data";
 
 export const respondWithCurrency = (
   mockData: BaseCurrency,
-  response: ServerResponse | undefined,
-  testing: Testing = {}
+  response: ServerResponse,
 ): void => {
-  if (response) {
-    response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify(mockData))
-    response.end()
-    return
-  }
+  response.setHeader('Content-Type', 'application/json');
+  response.write(JSON.stringify(mockData))
+  response.end()
+}
+export function handleIncomingHTTPRequest(request: IncomingMessage, response: ServerResponse) {
+  // All the endpoints:
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/USD
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/EUR
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/GBP
+  // http://45-79-65-143.ip.linodeusercontent.com:8082/CAD
+  const url = request.url;
 
-  if (testing && !response) {
-    testing.result = JSON.stringify(mockData)
-    return
+  switch (url) {
+    case "/USD": {
+      respondWithCurrency(mockUSDData, response);
+      break;
+    }
+    case "/EUR": {
+      respondWithCurrency(mockEURData, response);
+      break;
+    }
+    case "/GBP": {
+      respondWithCurrency(mockGBPData, response);
+      break;
+    }
+    case "/CAD": {
+      respondWithCurrency(mockCADData, response);
+      break;
+    }
+    default: {
+      response.setHeader('Content-Type', 'text/html');
+      response.write("<html>");
+      response.write("<p>Your <span style='color: deeppink'>endpoint</span> is not matching any of the data we have available</p>");
+      response.write("</html>");
+      response.end();
+    }
   }
 }

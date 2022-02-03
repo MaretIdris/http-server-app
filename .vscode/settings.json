@@ -1,4 +1,6 @@
 {
+  "copyrightInserter.holder": "Nadia Idris",
+  "copyrightInserter.license": "apache",
   "jest.jestCommandLine": "npx jest --watchAll",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
