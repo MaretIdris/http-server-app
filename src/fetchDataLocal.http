@@ -11,5 +11,9 @@ GET http://localhost:8082/GBP
 Accept: application/json
 
 ###
+GET http://localhost:8082/CAD
+Accept: application/json
+
+###
 GET http://localhost:8082/
 Accept: application/json

@@ -1,5 +1,5 @@
 {
-  "name": "your-project-based-on-ts-node-dev-template",
+  "name": "http-server",
   "version": "1.0.0",
   "scripts": {
     "test": "jest",
@@ -16,6 +16,7 @@
     "@types/node": "^15.14.9",
     "@types/node-fetch": "^2.5.10",
     "jest": "^26.6.3",
+    "prettier": "^2.5.1",
     "ts-jest": "^26.5.6",
     "tsm": "^2.2.1"
   },

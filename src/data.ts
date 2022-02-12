@@ -33,6 +33,7 @@ interface BaseCAD {
 }
 
 export type BaseCurrency = BaseUSD | BaseEUR | BaseGBP | BaseCAD
+
 export const mockUSDData: BaseUSD = {
   USD: {
     EUR: 0.88,
